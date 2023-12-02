@@ -16,7 +16,7 @@ process.stdin.on("data", (data) => {
     buffer.reduce((sum, item) => {
       const nextSum = item + sum;
 
-      console.log(`\n${sum}\t ${item >= 0 ? "+" : "-"}\t ${Math.abs(item)}\t =\t ${nextSum}`);
+      console.log(`\n${sum}\t ${item >= 0 ? "+" : "-"} ${Math.abs(item)}\t = ${nextSum}`);
       return nextSum;
     }, 0);
 
