@@ -1,0 +1,60 @@
+<!DOCTYPE html>
+<html lang="en">
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>Sum Util</title>
+  </head>
+  <body>
+    <section>
+      <label> Вставь числа: </label>
+      <textarea id="numbers"></textarea>
+    </section>
+    <section>
+      <span> Посчитаем: </span>
+      <table id="sum-table"></table>
+    </section>
+
+    <script>
+      const numbersNode = document.querySelector("#numbers");
+      const sumListNode = document.querySelector("#sum-table");
+
+      numbersNode.addEventListener("input", (e) => {
+        sumListNode.innerHTML = "";
+
+        // console.log(e.target.value);
+
+        const data = e.target.value;
+
+        const numbers = data.split("\n").filter((item) => item !== "");
+
+        numbers.reduce((sum, item, index) => {
+          const nextSum = +item + sum;
+          const rowNode = document.createElement("tr");
+          const id = index + 1;
+
+          if (!index) {
+            return nextSum;
+          }
+
+          [
+            `${id}.`,
+            sum,
+            item >= 0 ? "+" : "-",
+            Math.abs(item),
+            "=",
+            nextSum,
+          ].forEach((item) => {
+            const cellNode = document.createElement("td");
+            cellNode.textContent = item;
+            rowNode.append(cellNode);
+          });
+
+          sumListNode.append(rowNode);
+
+          return nextSum;
+        }, 0);
+      });
+    </script>
+  </body>
+</html>
